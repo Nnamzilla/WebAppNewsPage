@@ -30,7 +30,7 @@ h1
 	color: #FFFFFF;
 	text-align: center;
 }
-div
+div.container
 {
 	background-image: url(../img/paper_background.jpg);
 	background-size: cover;
@@ -38,3 +38,36 @@ div
 	display: inline-flex;
 	margin: 1%;	
 }
+
+/* Style the tab buttons */
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+}
+
+/* Change background color of buttons on hover */
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Set default styles for tab content */
+.tabcontent {
+    color: white;
+    display: none;
+    text-align: center;
+	width: 95%;
+	margin: 2%;
+}
+
+/* Style each tab content individually */ 
+#Submit {background-color:red;}
+#Read {background-color:green;}
+#About {background-color:blue;}
+#Contact {background-color:orange;}
