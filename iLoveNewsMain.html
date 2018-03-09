@@ -1,12 +1,128 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="CSS/main_styles.css" rel="stylesheet">
+<!--		<link href="CSS/main_styles.css" rel="stylesheet">-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="js/main_events.js"></script>
+		<script>
+		bool1 = false;
+		bool2 = false;
+		bool3 = false;
+		$("#_getNews").click(function(){
+			url = "http://localhost:8080/news/?"; // "http://lvh.me:8080/app/?"
+			$.get(url, function(data, status){
+				alert("Data: " + data + "\nStatus: " + status);
+			});
+			if (bool1 == false){
+				document.getElementById("article1").innerHTML = "new text 1";//pull from database
+				bool1 = true;
+			}
+			if (bool2 == false){
+				document.getElementById("article2").innerHTML = "new text 2";
+				bool2 = true;
+			}
+			if (bool3 == false) {
+				document.getElementById("article3").innerHTML = "new text 3";
+				bool3 = true;
+			}
+			});
+		function openTab(tabName, elmnt, color) {
+    // Hide all elements with class="tabcontent" by default */
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Remove the background color of all tablinks/buttons
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+
+    // Show the specific tab content
+    document.getElementById(tabName).style.display = "block";
+
+    // Add the specific color to the button used to open the tab content
+    elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+	</script>
+		<style>
+		#AccountCreation
+			{
+				margin: 25px;
+			}
+
+			form
+			{
+				margin: 25px;
+			}
+
+			#TwitchLink
+			{
+				margin: 25px;
+			}
+			body
+			{
+				background-image: url(img/wood_background.jpg);
+				background-size: 100%;
+			}
+			h1
+			{
+				color: #FFFFFF;
+				text-align: center;
+			}
+			div.container
+			{
+				background-image: url(img/paper_background.jpg);
+				background-size: cover;
+				width: 30%;
+				display: inline-flex;
+				margin: 1%;	
+			}
+
+			/* Style the tab buttons */
+			.tablink {
+				background-color: #555;
+				color: white;
+				float: left;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				padding: 14px 16px;
+				font-size: 17px;
+				width: 25%;
+			}
+
+			/* Change background color of buttons on hover */
+			.tablink:hover {
+				background-color: #777;
+			}
+
+			/* Set default styles for tab content */
+			.tabcontent {
+				color: white;
+				display: none;
+				text-align: center;
+				width: 95%;
+				margin: 2%;
+			}
+
+			/* Style each tab content individually */ 
+			#Submit {background-color:red;}
+			#Read {background-color:green;}
+			#About {background-color:blue;}
+			#Contact {background-color:orange;}
+
+			#_getNews {margin-left: 25px;}
+		</style>
+		
 	</head>
 	<body>
 		<h1>The <em>I &lt;3 News</em> Homepage</h1>
@@ -73,27 +189,5 @@ Mattis enim ut tellus elementum. Phasellus egestas tellus rutrum tellus pellente
 		
 	</body>
 
-	<script>
-		bool1 = false;
-		bool2 = false;
-		bool3 = false;
-		$("#_getNews").click(function(){
-			url = "http://localhost:8080/news/?"; // "http://lvh.me:8080/app/?"
-			$.get(url, function(data, status){
-				alert("Data: " + data + "\nStatus: " + status);
-			});
-			if (bool1 == false){
-				document.getElementById("article1").innerHTML = "new text 1";//pull from database
-				bool1 = true;
-			}
-			if (bool2 == false){
-				document.getElementById("article2").innerHTML = "new text 2";
-				bool2 = true;
-			}
-			if (bool3 == false) {
-				document.getElementById("article3").innerHTML = "new text 3";
-				bool3 = true;
-			}
-			});
-	</script>
+	
 </html>
