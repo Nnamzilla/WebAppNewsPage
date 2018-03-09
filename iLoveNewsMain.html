@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="css/main_styles.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="js/main_events.js"></script>
+	</head>
+	<body>
+		<h1>The <em>I &lt;3 News</em> Homepage</h1>
+		<!-- Header example from https://www.w3schools.com/howto/howto_js_tab_header.asp -->
+		<div id="Submit" class="tabcontent">
+  			<h3>Submit</h3>
+ 			 <p>Users can submit new articles to this news forum.</p>
+		</div>
+
+		<div id="Read" class="tabcontent">
+			 <h3>Read Articles</h3>
+ 			 <p>This site is intended to give users access to company news.</p> 
+		</div>
+
+		<div id="About" class="tabcontent">
+  			<h3>About</h3>
+  			<p>This website was created by Lincoln and Naamdi.</p>
+		</div>
+
+		<div id="Contact" class="tabcontent">
+  			<h3>Contact</h3>
+  			<p>If you don't already know how to contact us, you probably shouldn't be seeing this.</p>
+		</div>
+		<!-- end of header example. Also inserted code to css and js files to supplement header. -->
+		
+<button class="tablink" onclick="openTab('Submit', this, 'red')" id="defaultOpen">Submit</button>
+<button class="tablink" onclick="openTab('Read', this, 'green')">Read</button>
+<button class="tablink" onclick="openTab('About', this, 'blue')">About</button>
+<button class="tablink" onclick="openTab('Contact', this, 'orange')">Contact</button>
+		
+<form action="iLoveNewsMain.html">
+  News Article Title:<br>
+  <input id="title" type="text" name="title" value="Article Title: "><br>
+  News Article Text:<br>
+  <!--<textarea id="article_in" name="paragraph_text" cols="100" rows="8"></textarea> Not sure if this works.-->
+  <input id="text_form" size="100" type="text" name="article" value="Copy and paste your article here: "><br><br>
+  <input type="submit" value="Submit">
+</form>
+		<button type="button" id="_getNews" onclick="getNews()">Refresh News Articles</button> <br><br>
+	
+		
+		
+		<div id="container1" class="container">
+			<p id="article1"><strong>News Article 1:</strong> </p>
+		</div>
+		<div id="container2" class="container">
+			<p id="article2"><strong>News Article 2:</strong> </p>
+		</div>
+		<div id="container3" class="container">
+			<p id="article3"><strong>News Article 3:</strong> </p>
+		</div>
+		
+	</body>
+
+	<script>
+		bool1 = false;
+		bool2 = false;
+		bool3 = false;
+		$("#_getNews").click(function(){
+			url = "http://localhost:8080/news/?"; // "http://lvh.me:8080/app/?"
+			$.get(url, function(data, status){
+				alert("Data: " + data + "\nStatus: " + status);
+			});
+
+		if (bool1 == false){
+			document.getElementById("article1").innerHTML = text_form;
+			bool1 = true;
+		}
+		if (bool2 == false){
+			document.getElementById("article2").innerHTML = text_form;
+			bool2 = true;
+		}
+		if (bool3 == false) {
+			document.getElementById("article3").innerHTML = text_form;
+			bool3 = true;
+		}
+		});
+	</script>
+</html>
