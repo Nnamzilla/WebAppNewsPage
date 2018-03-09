@@ -60,6 +60,32 @@ app.get('/login/', function(req, res) {
 	res.send(response);
 });
 
+app.get('/news/', function(req, res) {
+	var t = req.query.title;
+	var a = req.query.text_form;
+
+	MongoClient.connect(url, function(err, db) {
+		if (err) throw err;
+		var dbo = db.db("news");
+		var myobj = { title: t, article: a };
+		dbo.collection("articles").insertOne(myobj, function(err, res) {
+			if (err) 
+			{
+				throw err;
+				db.close;
+				res.send("Error. Article not submitted.");
+			}
+			else 
+			{
+				console.log("1 document inserted.");
+				db.close;
+				res.send("Article successfully submitted.");
+			}
+		});
+	});
+	res.send(response);
+});
+
 // start the server
 app.listen(port);
 console.log('Server started! At http://localhost:' + port);
