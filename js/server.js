@@ -7,19 +7,17 @@ var url = "mongodb://localhost:27017/";
 
 // routes will go here
 app.get('/', function(req, res) {
-	res.sendfile('../CSS/login_styles.css')
 	res.sendfile('../iLoveNewsFP.html')
-})
+});
 
 app.get('/create/', function(req, res) {
-	var u = req.query._uname;
-	var e = req.query._email;
-	var p = req.query._pass;
+	var u = req.query.uname;
+	var p = req.query.pass;
 
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 		var dbo = db.db("news");
-		var myobj = { username: u, email: e, password: p };
+		var myobj = { username: u, pass: p };
 		dbo.collection("users").insertOne(myobj, function(err, res) {
 			if (err) 
 			{

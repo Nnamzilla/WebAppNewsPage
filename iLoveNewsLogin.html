@@ -20,12 +20,12 @@
 			<input type="text" id="_pass" name="_pass" placeholder="Enter password: " />
 			<br>
 			<br>
-			<button type="button" id="_submit" onclick="login()">Sign In</button>
+			<button type="button" id="_login" onclick="login()">Sign In</button>
 		</form>
 </body>
 	<script>
-		$("#_submit").click(function(){
-			url = "http://localhost:8080/app/?"; // "http://lvh.me:8080/app/?"
+		$("#_login").click(function(){
+			url = "http://localhost:8080/login/?"; // "http://lvh.me:8080/app/?"
 			url += "uname=" + document.getElementById("_uname").value;
 			url += "&pass=" + document.getElementById("_pass").value;
 			$.get(url, function(data, status){
