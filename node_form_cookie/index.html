@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NodeJS + Express Example</title>
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		
+	</head>
+	<body>
+		<form>
+			<h3>Login</h3>
+			Username: <input type="text" name="log_uname" id="log_uname" placeholder="Username" /> <br/>
+			Password: <input type="text" name="log_pass" id="log_pass" placeholder="Password" /> <br/>
+			<button id="loginButton" onclick="return false;">Login</button>
+		</form>
+		
+		<br />
+		
+		<div id="results">
+			&nbsp;
+		</div>
+		
+	</body>
+	
+	<script>
+		$("#loginButton").click(function(){
+			url = "http://localhost:8080/login/?";
+			url += "uname=" + document.getElementById("log_uname").value;
+			url += "&pass=" + document.getElementById("log_pass").value;
+			$.get(url, function(data, status){
+				alert("Data: " + data + "\nStatus: " + status);
+				document.getElementById("results").innerHTML = data;
+			});
+		});
+	</script>
+</html>

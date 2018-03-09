@@ -1,4 +1,33 @@
+//Cookie example code: https://www.npmjs.com/package/cookie
+
 // grab the packages we need
+var cookie = require('cookie');
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 8080;
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+// routes will go here
+app.get('/login/', function(req, response) {
+	var u = req.query.uname;
+	var p = req.query.pass;
+
+	response.setHeader('Set-Cookie', cookie.serialize('username', String(u), {
+      httpOnly: true,
+      maxAge: 60 * 60 * 24 * 7 // 1 week 
+    }));
+	
+	response.end();
+});
+
+// start the server
+app.listen(port);
+console.log('Server started! At http://localhost:' + port);
+
+
+
+/*// grab the packages we need
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 8080;
@@ -7,12 +36,19 @@ var url = "mongodb://localhost:27017/";
 
 // routes will go here
 app.get('/', function(req, res) {
-	res.sendfile('/Users/lincolnjones/Desktop/node_form_mongo/index.html')
+	res.sendfile('../CSS/main_style.css')
 })
+app.get('/', function(req, res) {
+	res.sendfile('../iLoveNewsFP.html')
+});
+app.get('/', function(req, res) {
+	res.sendfile('login_events.js')
+});
+
 
 app.get('/create/', function(req, res) {
-	var u = req.query.uname;
-	var p = req.query.pass;
+	var u = req.query._uname;
+	var p = req.query._pass;
 
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
@@ -37,8 +73,8 @@ app.get('/create/', function(req, res) {
 });
 
 app.get('/login/', function(req, res) {
-	var u = req.query.uname;
-	var p = req.query.pass;
+	var u = req.query._uname;
+	var p = req.query._pass;
 	var response = "Error. Username or password not in DB.";
 
 	MongoClient.connect(url, function(err, db) {
@@ -60,4 +96,4 @@ app.get('/login/', function(req, res) {
 
 // start the server
 app.listen(port);
-console.log('Server started! At http://localhost:' + port);
+console.log('Server started! At http://localhost:' + port);*/

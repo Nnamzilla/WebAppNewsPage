@@ -1,12 +1,115 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="css/login_styles.css" rel="stylesheet">
+		<!-- <link href="css/login_styles.css" rel="stylesheet"> -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<script src="js/login_events.js"></script>
+		<style>
+		*{
+			font-family: helvetica; 
+		}
+
+		#AccountCreation
+		{
+			margin: 25px;
+			text-align: center;
+			color: #FFFFFF;
+
+		}
+
+		form
+		{
+			text-align: center;
+			margin: 25px;
+		}
+
+		#SignIn
+		{
+			text-align: center;
+			color: #FFFFFF;
+			margin: 25px;
+		}
+		#SignInLink
+		{
+			color: #FFFFFF;
+		}
+		body {
+			background-image: url(img/earth_news.jpg);
+			background-size: 100%;
+		}
+		</style>
+		<script>
+		$("#_login").click(function(){
+			url = "http://localhost:8080/login/?"; // "http://lvh.me:8080/app/?"
+			url += "uname=" + document.getElementById("_uname").value;
+			url += "&pass=" + document.getElementById("_pass").value;
+			$.get(url, function(data, status){
+				alert("Data: " + data + "\nStatus: " + status);
+			});
+		});
+		function creation()
+			{
+				var uname = document.getElementById("_uname").value;
+				var email = document.getElementById("_email").value;
+				var pass = document.getElementById("_pass").value;
+				var confirmed = document.getElementById("_passConfirm").value;
+				if(uname == "")
+				{
+					alert("Please enter user name!");
+					return;
+				}
+				else if(email == "")
+				{
+					alert("Please enter email!");
+					return;
+				}
+				else if(pass == "" || pass != confirmed)
+				{
+					alert("Please provide a valid password that matches in both fields.")
+					return;
+				}
+				
+				var atSign = false;
+				for(var i = 0; i < email.length; i++)
+				{
+					if(email[i] == "@")
+					{
+						atSign = true;
+						break;
+					}
+				}
+				if(atSign == false)
+				{
+					alert("Please enter a valid email address.");
+						return;
+				}
+				
+				document.forms["myForm"].submit();
+				location.href = "iLoveNewsMain.html";
+			}
+			
+	function login()
+	{
+				var uname = document.getElementById("_uname").value;
+				var pass = document.getElementById("_pass").value;
+				if(uname == "")
+				{
+					alert("Please provide a valid username.");
+					return;
+				}
+				else if(pass == "")
+				{
+					alert("Please provide a valid password.")
+					return;
+				}
+				
+				document.forms["myForm"].submit();
+				location.href = "iLoveNewsMain.html";
+	}
+	</script>
 
 	</head>
 	<body>
@@ -20,19 +123,10 @@
 			<input type="text" id="_pass" name="_pass" placeholder="Enter password: " />
 			<br>
 			<br>
-			<button type="button" id="_submit" onclick="login()">Sign In</button>
+			<button type="button" id="_login" onclick="login()">Sign In</button>
 		</form>
 </body>
-	<script>
-		$("#_submit").click(function(){
-			url = "http://localhost:8080/app/?"; // "http://lvh.me:8080/app/?"
-			url += "uname=" + document.getElementById("_uname").value;
-			url += "&pass=" + document.getElementById("_pass").value;
-			$.get(url, function(data, status){
-				alert("Data: " + data + "\nStatus: " + status);
-			});
-		});
-	</script>
+	
 	
 	
 </html>
