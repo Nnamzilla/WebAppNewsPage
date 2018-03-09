@@ -9,6 +9,11 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
 // routes will go here
+app.get('/', function(req, res) {
+	res.sendfile('iLoveNewsFP.html')
+})
+
+
 app.get('/login/', function(req, response) {
 	var u = req.query.uname;
 	var p = req.query.pass;
@@ -21,9 +26,35 @@ app.get('/login/', function(req, response) {
 	response.end();
 });
 
+app.get('/create/', function(req, res) {
+	var u = req.query._uname;
+	var p = req.query._pass;
+
+	MongoClient.connect(url, function(err, db) {
+		if (err) throw err;
+		var dbo = db.db("news");
+		var myobj = { username: u, pass: p };
+		dbo.collection("users").insertOne(myobj, function(err, res) {
+			if (err) 
+			{
+				throw err;
+				db.close;
+				res.send("Error. Account not created.");
+			}
+			else 
+			{
+				console.log("1 document inserted.");
+				db.close;
+				res.send("Account successfully created.");
+			}
+		});
+	});
+	res.send(response);
+});
+
 // start the server
 app.listen(port);
-console.log('Server started! At http://localhost:' + port);
+console.log('Server started! At http://localhost:' + port);*/
 
 
 
