@@ -40,7 +40,7 @@
 				}
 				
 				document.forms["myForm"].submit();
-				location.href = "/Users/Nnamdi/Documents/PratherWebApp/WebAppNewsPage-dev/iLoveNewsMain.html";
+				location.href = "iLoveNewsMain.html";
 			}
 			
 	function login()
@@ -59,5 +59,5 @@
 				}
 				
 				document.forms["myForm"].submit();
-				location.href = "/Users/Nnamdi/Documents/PratherWebApp/WebAppNewsPage-dev/iLoveNewsMain.html";
+				location.href = "iLoveNewsMain.html";
 	}
